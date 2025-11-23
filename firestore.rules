@@ -1,0 +1,83 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Règles pour les utilisateurs
+    match /users/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+      allow read: if request.auth != null; // Permettre la lecture pour les autres utilisateurs
+    }
+    
+    // Règles pour les notifications
+    match /notifications/{notificationId} {
+      // L'utilisateur peut lire ses propres notifications
+      allow read: if request.auth != null && request.auth.uid == resource.data.userId;
+      
+      // L'utilisateur peut créer des notifications pour lui-même
+      allow create: if request.auth != null && request.auth.uid == request.resource.data.userId;
+      
+      // Permettre à n'importe quel utilisateur authentifié de créer des notifications pour d'autres
+      // (nécessaire pour les notifications entre utilisateurs)
+      allow create: if request.auth != null;
+      
+      // L'utilisateur peut modifier ses propres notifications (marquer comme lues)
+      allow update: if request.auth != null && request.auth.uid == resource.data.userId;
+      
+      // L'utilisateur peut supprimer ses propres notifications
+      allow delete: if request.auth != null && request.auth.uid == resource.data.userId;
+    }
+    
+    // Règles pour les conversations
+    match /conversations/{conversationId} {
+      allow read, write: if request.auth != null && request.auth.uid in resource.data.participants;
+      allow create: if request.auth != null;
+    }
+    
+    // Règles pour les messages
+    match /messages/{messageId} {
+      allow read, write: if request.auth != null;
+      allow create: if request.auth != null;
+    }
+    
+    // Règles pour les offres d'emploi
+    match /jobs/{jobId} {
+      allow read: if request.auth != null;
+      // Création/mise à jour réservées au propriétaire de l'offre
+      allow create, update: if request.auth != null && request.auth.uid == request.resource.data.employerId;
+    }
+
+    // Règles pour les candidatures
+    match /applications/{applicationId} {
+      // Lecture d'une candidature autorisée si
+      // - c'est le travailleur qui a postulé, ou
+      // - c'est l'employeur propriétaire de l'offre
+      allow read: if request.auth != null && (
+        request.auth.uid == resource.data.workerId ||
+        request.auth.uid == resource.data.employerId
+      );
+
+      // Création d'une candidature autorisée seulement par le travailleur concerné
+      allow create: if request.auth != null && request.auth.uid == request.resource.data.workerId;
+
+      // Mise à jour autorisée par
+      // - l'employeur (pour changer le statut, marquer comme vue, etc.)
+      // - le travailleur (pour retirer sa candidature)
+      allow update: if request.auth != null && (
+        request.auth.uid == resource.data.employerId ||
+        request.auth.uid == resource.data.workerId
+      );
+
+      // Pas de suppression directe côté client
+    }
+    
+    // Collection de test (pour diagnostics)
+    match /test/{document} {
+      allow read, write: if request.auth != null;
+    }
+    
+    // Règles par défaut - refuser tout le reste
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

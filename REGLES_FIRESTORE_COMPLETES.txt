@@ -1,0 +1,67 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // ==================== UTILISATEURS ====================
+    match /users/{userId} {
+      // Chacun peut lire/écrire son propre profil
+      allow read, write: if request.auth.uid == userId;
+      // Tout le monde peut lire les profils (pour afficher les candidats)
+      allow read: if request.auth != null;
+    }
+    
+    // ==================== OFFRES D'EMPLOI ====================
+    match /jobs/{jobId} {
+      // Tout le monde peut lire les offres
+      allow read: if true;
+      // Seuls les utilisateurs connectés peuvent créer des offres
+      allow create: if request.auth != null;
+      // Seul le créateur peut modifier/supprimer son offre
+      allow update, delete: if request.auth.uid == resource.data.employerId;
+    }
+    
+    // ==================== CANDIDATURES ====================
+    match /applications/{applicationId} {
+      // Tout utilisateur connecté peut créer une candidature
+      allow create: if request.auth != null;
+      
+      // LECTURE : Très permissive pour déboguer
+      allow read: if request.auth != null;
+      
+      // L'employeur peut modifier le statut des candidatures
+      allow update: if request.auth != null;
+      
+      // Suppression autorisée pour le créateur
+      allow delete: if request.auth != null;
+    }
+    
+    // ==================== CONVERSATIONS ====================
+    match /conversations/{conversationId} {
+      // Les participants peuvent lire/écrire dans leurs conversations
+      allow read, write: if request.auth != null;
+      allow create: if request.auth != null;
+    }
+    
+    // ==================== MESSAGES ====================
+    match /messages/{messageId} {
+      // Seuls les utilisateurs connectés peuvent créer des messages
+      allow create, read, update: if request.auth != null;
+    }
+    
+    // ==================== NOTIFICATIONS ====================
+    match /notifications/{notificationId} {
+      // Permissions très ouvertes pour déboguer
+      allow read, create, update, delete: if request.auth != null;
+    }
+    
+    // ==================== AVIS/ÉVALUATIONS ====================
+    match /reviews/{reviewId} {
+      // Tout le monde peut lire les avis
+      allow read: if true;
+      // Seuls les utilisateurs connectés peuvent créer des avis
+      allow create: if request.auth != null;
+      // Seul le créateur peut modifier son avis
+      allow update: if request.auth != null;
+    }
+  }
+}
