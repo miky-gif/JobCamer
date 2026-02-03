@@ -17,17 +17,21 @@ export const Home: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900">
-      {/* Hero Section - Ultra Modern Design */}
+      {/* Enhanced Hero Section with Interactive Elements */}
       <section className="relative bg-gradient-to-br from-slate-50 via-white to-slate-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 pt-20 pb-32 px-4 overflow-hidden">
-        {/* Advanced Decorative elements */}
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-to-br from-green-400/20 via-emerald-300/10 to-transparent rounded-full blur-3xl -translate-y-1/3 translate-x-1/4 animate-pulse"></div>
-        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-gradient-to-tr from-red-400/15 via-rose-300/10 to-transparent rounded-full blur-3xl translate-y-1/3 -translate-x-1/4"></div>
-        <div className="absolute top-1/2 right-1/3 w-[400px] h-[400px] bg-gradient-to-bl from-yellow-400/15 via-amber-300/10 to-transparent rounded-full blur-3xl animate-pulse delay-1000"></div>
-        
-        {/* Floating geometric shapes */}
-        <div className="absolute top-20 left-1/4 w-4 h-4 bg-green-500/30 rounded-full animate-bounce delay-300"></div>
-        <div className="absolute top-40 right-1/3 w-6 h-6 bg-red-500/30 rotate-45 animate-pulse delay-700"></div>
-        <div className="absolute bottom-32 left-1/3 w-3 h-3 bg-yellow-500/40 rounded-full animate-bounce delay-1000"></div>
+        {/* Advanced animated background */}
+        <div className="absolute inset-0">
+          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-to-br from-green-400/20 via-emerald-300/10 to-transparent rounded-full blur-3xl -translate-y-1/3 translate-x-1/4 animate-pulse"></div>
+          <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-gradient-to-tr from-red-400/15 via-rose-300/10 to-transparent rounded-full blur-3xl translate-y-1/3 -translate-x-1/4"></div>
+          <div className="absolute top-1/2 right-1/3 w-[400px] h-[400px] bg-gradient-to-bl from-yellow-400/15 via-amber-300/10 to-transparent rounded-full blur-3xl animate-pulse delay-1000"></div>
+          
+          {/* Animated particles */}
+          <div className="absolute top-20 left-1/4 w-4 h-4 bg-green-500/30 rounded-full animate-bounce delay-300"></div>
+          <div className="absolute top-40 right-1/3 w-6 h-6 bg-red-500/30 rotate-45 animate-pulse delay-700"></div>
+          <div className="absolute bottom-32 left-1/3 w-3 h-3 bg-yellow-500/40 rounded-full animate-bounce delay-1000"></div>
+          <div className="absolute top-60 right-1/4 w-2 h-2 bg-blue-500/30 rounded-full animate-ping delay-500"></div>
+          <div className="absolute bottom-20 right-1/2 w-4 h-4 bg-purple-500/30 rounded-full animate-bounce delay-1500"></div>
+        </div>
         
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -42,23 +46,23 @@ export const Home: React.FC = () => {
                 <span className="text-sm font-semibold text-green-700 dark:text-green-400 tracking-wide">Plateforme Camerounaise #1</span>
               </div>
               
-              <h1 className="text-6xl md:text-7xl font-black text-gray-900 dark:text-white mb-8 leading-[0.9] tracking-tight">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-gray-900 dark:text-white mb-6 sm:mb-8 leading-[0.9] tracking-tight">
                 {t('home.hero.title').split(' ').map((word, idx) => {
-                  if (idx === 1) return <span key={idx} className="bg-gradient-to-r from-green-500 to-emerald-600 bg-clip-text text-transparent">{word} </span>;
+                  if (idx === 1) return <span key={idx} className="bg-gradient-to-r from-green-500 to-emerald-600 bg-clip-text text-transparent animate-pulse">{word} </span>;
                   if (idx === 3) return <span key={idx} className="bg-gradient-to-r from-red-500 to-rose-600 bg-clip-text text-transparent">{word} </span>;
                   if (idx === 4) return <span key={idx} className="bg-gradient-to-r from-yellow-500 to-amber-600 bg-clip-text text-transparent">{word}</span>;
                   return <span key={idx}>{word} </span>;
                 })}
               </h1>
               
-              <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-12 leading-relaxed font-light max-w-2xl">
+              <p className="text-lg sm:text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8 sm:mb-12 leading-relaxed font-light max-w-2xl">
                 {t('home.hero.subtitle')}
               </p>
               
               {!isAuthenticated ? (
-                <div className="flex flex-col sm:flex-row gap-6 mb-16">
+                <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 mb-12 sm:mb-16">
                   <Link to="/register?role=worker" className="group">
-                    <button className="w-full sm:w-auto px-10 py-5 bg-gradient-to-r from-green-600 via-green-700 to-emerald-700 text-white rounded-2xl font-bold text-lg hover:shadow-2xl transition-all duration-300 shadow-xl transform hover:scale-105 hover:-translate-y-1 relative overflow-hidden">
+                    <button className="w-full sm:w-auto px-6 sm:px-10 py-4 sm:py-5 bg-gradient-to-r from-green-600 via-green-700 to-emerald-700 text-white rounded-2xl font-bold text-base sm:text-lg hover:shadow-2xl transition-all duration-300 shadow-xl transform hover:scale-105 hover:-translate-y-1 relative overflow-hidden">
                       <div className="absolute inset-0 bg-gradient-to-r from-green-500 to-emerald-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                       <div className="relative flex items-center justify-center gap-3">
                         <span className="text-2xl">👷</span>
@@ -67,7 +71,7 @@ export const Home: React.FC = () => {
                     </button>
                   </Link>
                   <Link to="/register?role=employer" className="group">
-                    <button className="w-full sm:w-auto px-10 py-5 bg-white dark:bg-gray-800 text-gray-900 dark:text-white border-2 border-gray-200 dark:border-gray-600 rounded-2xl font-bold text-lg hover:shadow-2xl transition-all duration-300 shadow-lg transform hover:scale-105 hover:-translate-y-1 hover:border-green-500 dark:hover:border-green-400 relative overflow-hidden">
+                    <button className="w-full sm:w-auto px-6 sm:px-10 py-4 sm:py-5 bg-white dark:bg-gray-800 text-gray-900 dark:text-white border-2 border-gray-200 dark:border-gray-600 rounded-2xl font-bold text-base sm:text-lg hover:shadow-2xl transition-all duration-300 shadow-lg transform hover:scale-105 hover:-translate-y-1 hover:border-green-500 dark:hover:border-green-400 relative overflow-hidden">
                       <div className="absolute inset-0 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                       <div className="relative flex items-center justify-center gap-3">
                         <span className="text-2xl">💼</span>
@@ -79,7 +83,7 @@ export const Home: React.FC = () => {
               ) : (
                 <div className="mb-16">
                   <Link to="/search" className="group">
-                    <button className="px-10 py-5 bg-gradient-to-r from-green-600 via-green-700 to-emerald-700 text-white rounded-2xl font-bold text-lg hover:shadow-2xl transition-all duration-300 shadow-xl transform hover:scale-105 hover:-translate-y-1 inline-flex items-center gap-3 relative overflow-hidden">
+                    <button className="px-6 sm:px-10 py-4 sm:py-5 bg-gradient-to-r from-green-600 via-green-700 to-emerald-700 text-white rounded-2xl font-bold text-base sm:text-lg hover:shadow-2xl transition-all duration-300 shadow-xl transform hover:scale-105 hover:-translate-y-1 inline-flex items-center gap-3 relative overflow-hidden">
                       <div className="absolute inset-0 bg-gradient-to-r from-green-500 to-emerald-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                       <div className="relative flex items-center gap-3">
                         <Search size={24} />
@@ -90,43 +94,49 @@ export const Home: React.FC = () => {
                 </div>
               )}
 
-              {/* Enhanced Trust badges */}
-              <div className="flex flex-wrap gap-4 text-sm">
-                <div className="flex items-center gap-3 px-4 py-2 bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm rounded-full border border-gray-200/50 dark:border-gray-700/50">
-                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                  <span className="font-medium text-gray-700 dark:text-gray-300">{t('home.hero.free')}</span>
+              {/* Enhanced Trust badges - Mobile responsive */}
+              <div className="flex flex-wrap gap-3 sm:gap-4 text-xs sm:text-sm">
+                <div className="flex items-center gap-2 sm:gap-3 px-3 sm:px-4 py-2 bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm rounded-full border border-gray-200/50 dark:border-gray-700/50">
+                  <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-green-500 rounded-full"></div>
+                  <span className="font-medium text-gray-700 dark:text-gray-300 text-xs sm:text-sm">{t('home.hero.free')}</span>
                 </div>
-                <div className="flex items-center gap-3 px-4 py-2 bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm rounded-full border border-gray-200/50 dark:border-gray-700/50">
-                  <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                  <span className="font-medium text-gray-700 dark:text-gray-300">{t('home.hero.secure')}</span>
+                <div className="flex items-center gap-2 sm:gap-3 px-3 sm:px-4 py-2 bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm rounded-full border border-gray-200/50 dark:border-gray-700/50">
+                  <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-blue-500 rounded-full"></div>
+                  <span className="font-medium text-gray-700 dark:text-gray-300 text-xs sm:text-sm">{t('home.hero.secure')}</span>
                 </div>
-                <div className="flex items-center gap-3 px-4 py-2 bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm rounded-full border border-gray-200/50 dark:border-gray-700/50">
-                  <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
-                  <span className="font-medium text-gray-700 dark:text-gray-300">Support 24/7</span>
+                <div className="flex items-center gap-2 sm:gap-3 px-3 sm:px-4 py-2 bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm rounded-full border border-gray-200/50 dark:border-gray-700/50">
+                  <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-yellow-500 rounded-full"></div>
+                  <span className="font-medium text-gray-700 dark:text-gray-300 text-xs sm:text-sm">Support 24/7</span>
                 </div>
               </div>
             </div>
 
-            {/* Enhanced Right Image */}
-            <div className="relative h-[500px] hidden md:block">
-              <div className="absolute inset-0 bg-gradient-to-br from-green-500/20 via-transparent to-red-500/20 rounded-3xl blur-xl"></div>
-              <div className="relative h-full rounded-3xl overflow-hidden shadow-2xl border border-white/20 backdrop-blur-sm transform hover:scale-105 transition-transform duration-500">
+            {/* Enhanced Interactive Right Image */}
+            <div className="relative h-[500px] hidden md:block group">
+              <div className="absolute inset-0 bg-gradient-to-br from-green-500/20 via-transparent to-red-500/20 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
+              <div className="relative h-full rounded-3xl overflow-hidden shadow-2xl border border-white/20 backdrop-blur-sm transform hover:scale-105 transition-all duration-500 hover:rotate-1">
                 <img 
                   src="/image accueil.jpg" 
                   alt="JobCamer Platform" 
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
                 
-                {/* Floating stats cards */}
-                <div className="absolute top-6 right-6 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-2xl p-4 shadow-xl">
-                  <div className="text-2xl font-bold text-green-600">500+</div>
+                {/* Enhanced floating stats cards with animations */}
+                <div className="absolute top-6 right-6 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-2xl p-4 shadow-xl transform hover:scale-110 transition-all duration-300 hover:rotate-3">
+                  <div className="text-2xl font-bold text-green-600 animate-pulse">500+</div>
                   <div className="text-xs text-gray-600 dark:text-gray-400">Travailleurs</div>
                 </div>
                 
-                <div className="absolute bottom-6 left-6 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-2xl p-4 shadow-xl">
-                  <div className="text-2xl font-bold text-red-600">200+</div>
+                <div className="absolute bottom-6 left-6 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-2xl p-4 shadow-xl transform hover:scale-110 transition-all duration-300 hover:-rotate-3">
+                  <div className="text-2xl font-bold text-red-600 animate-pulse delay-1000">200+</div>
                   <div className="text-xs text-gray-600 dark:text-gray-400">Employeurs</div>
+                </div>
+                
+                {/* New floating card */}
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-2xl p-4 shadow-xl opacity-0 group-hover:opacity-100 transition-all duration-500 hover:scale-110">
+                  <div className="text-2xl font-bold text-yellow-600">4.8/5</div>
+                  <div className="text-xs text-gray-600 dark:text-gray-400">Satisfaction</div>
                 </div>
               </div>
             </div>
@@ -449,6 +459,345 @@ export const Home: React.FC = () => {
                     {t('home.howItWorks.step3Desc')}
                   </p>
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Premium Features Section */}
+      <section className="py-32 px-4 bg-gradient-to-br from-slate-50 via-white to-gray-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 relative overflow-hidden">
+        {/* Background decorations */}
+        <div className="absolute top-0 left-0 w-full h-full">
+          <div className="absolute top-20 right-20 w-36 h-36 bg-purple-400/10 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-20 left-20 w-40 h-40 bg-indigo-400/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+          <div className="absolute top-1/2 left-1/3 w-32 h-32 bg-pink-400/10 rounded-full blur-3xl animate-pulse delay-500"></div>
+        </div>
+        
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="text-center mb-20">
+            <div className="inline-flex items-center gap-2 mb-6 px-6 py-3 bg-gradient-to-r from-purple-100 to-indigo-100 dark:from-purple-900/30 dark:to-indigo-900/30 rounded-full border border-purple-200 dark:border-purple-700/50">
+              <div className="w-2 h-2 bg-purple-500 rounded-full animate-pulse"></div>
+              <span className="text-sm font-semibold text-purple-700 dark:text-purple-400">Fonctionnalités Premium</span>
+            </div>
+            <h2 className="text-4xl md:text-6xl font-black text-gray-900 dark:text-white mb-6 leading-tight">
+              Pourquoi Choisir JobCamer ?
+            </h2>
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
+              Découvrez toutes les fonctionnalités qui font de JobCamer la meilleure plateforme pour l'emploi informel au Cameroun
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Feature 1 */}
+            <div className="group relative">
+              <div className="absolute inset-0 bg-gradient-to-br from-green-500/20 via-emerald-400/10 to-transparent rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
+              <div className="relative p-8 rounded-3xl bg-white/70 dark:bg-gray-800/70 backdrop-blur-xl border border-white/30 dark:border-gray-700/30 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-green-500 to-emerald-600 rounded-t-3xl"></div>
+                <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl mb-6 shadow-lg">
+                  <span className="text-2xl">🔍</span>
+                </div>
+                <h3 className="text-2xl font-black mb-4 text-gray-900 dark:text-white">Recherche Avancée</h3>
+                <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
+                  Filtrez les offres par localisation, catégorie, budget et disponibilité. Trouvez exactement ce que vous cherchez en quelques clics.
+                </p>
+                <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
+                  <li className="flex items-center gap-2">
+                    <span className="text-green-500">✓</span>
+                    <span>Recherche par géolocalisation</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="text-green-500">✓</span>
+                    <span>Filtres multi-critères</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="text-green-500">✓</span>
+                    <span>Alertes personnalisées</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Feature 2 */}
+            <div className="group relative">
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 via-indigo-400/10 to-transparent rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
+              <div className="relative p-8 rounded-3xl bg-white/70 dark:bg-gray-800/70 backdrop-blur-xl border border-white/30 dark:border-gray-700/30 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-t-3xl"></div>
+                <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl mb-6 shadow-lg">
+                  <span className="text-2xl">💬</span>
+                </div>
+                <h3 className="text-2xl font-black mb-4 text-gray-900 dark:text-white">Messagerie Intégrée</h3>
+                <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
+                  Communiquez directement avec les travailleurs ou employeurs sans partager vos coordonnées personnels.
+                </p>
+                <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
+                  <li className="flex items-center gap-2">
+                    <span className="text-blue-500">✓</span>
+                    <span>Chat en temps réel</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="text-blue-500">✓</span>
+                    <span>Partage de fichiers</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="text-blue-500">✓</span>
+                    <span>Notifications instantanées</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Feature 3 */}
+            <div className="group relative">
+              <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/20 via-amber-400/10 to-transparent rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
+              <div className="relative p-8 rounded-3xl bg-white/70 dark:bg-gray-800/70 backdrop-blur-xl border border-white/30 dark:border-gray-700/30 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-500 to-amber-600 rounded-t-3xl"></div>
+                <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-yellow-500 to-amber-600 rounded-2xl mb-6 shadow-lg">
+                  <span className="text-2xl">💳</span>
+                </div>
+                <h3 className="text-2xl font-black mb-4 text-gray-900 dark:text-white">Paiements Sécurisés</h3>
+                <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
+                  Effectuez et recevez des paiements en toute sécurité avec Mobile Money. La plateforme garantit la transaction.
+                </p>
+                <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
+                  <li className="flex items-center gap-2">
+                    <span className="text-yellow-500">✓</span>
+                    <span>Orange Money & MTN MoMo</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="text-yellow-500">✓</span>
+                    <span>Paiement sécurisé</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="text-yellow-500">✓</span>
+                    <span>Historique détaillé</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Feature 4 */}
+            <div className="group relative">
+              <div className="absolute inset-0 bg-gradient-to-br from-red-500/20 via-rose-400/10 to-transparent rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
+              <div className="relative p-8 rounded-3xl bg-white/70 dark:bg-gray-800/70 backdrop-blur-xl border border-white/30 dark:border-gray-700/30 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-red-500 to-rose-600 rounded-t-3xl"></div>
+                <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-red-500 to-rose-600 rounded-2xl mb-6 shadow-lg">
+                  <span className="text-2xl">⭐</span>
+                </div>
+                <h3 className="text-2xl font-black mb-4 text-gray-900 dark:text-white">Système d'Évaluation</h3>
+                <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
+                  Notez et évaluez les travailleurs et employeurs après chaque mission pour construire une communauté de confiance.
+                </p>
+                <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
+                  <li className="flex items-center gap-2">
+                    <span className="text-red-500">✓</span>
+                    <span>Étoiles et avis</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="text-red-500">✓</span>
+                    <span>Commentaires détaillés</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="text-red-500">✓</span>
+                    <span>Badges de vérification</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Feature 5 */}
+            <div className="group relative">
+              <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 via-violet-400/10 to-transparent rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
+              <div className="relative p-8 rounded-3xl bg-white/70 dark:bg-gray-800/70 backdrop-blur-xl border border-white/30 dark:border-gray-700/30 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-purple-500 to-violet-600 rounded-t-3xl"></div>
+                <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-purple-500 to-violet-600 rounded-2xl mb-6 shadow-lg">
+                  <span className="text-2xl">📱</span>
+                </div>
+                <h3 className="text-2xl font-black mb-4 text-gray-900 dark:text-white">Application Mobile</h3>
+                <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
+                  Accédez à la plateforme partout avec notre PWA. Installez l'application sur votre téléphone en un clic.
+                </p>
+                <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
+                  <li className="flex items-center gap-2">
+                    <span className="text-purple-500">✓</span>
+                    <span>Progressive Web App</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="text-purple-500">✓</span>
+                    <span>Fonctionne hors ligne</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="text-purple-500">✓</span>
+                    <span>Notifications push</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Feature 6 */}
+            <div className="group relative">
+              <div className="absolute inset-0 bg-gradient-to-br from-teal-500/20 via-cyan-400/10 to-transparent rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
+              <div className="relative p-8 rounded-3xl bg-white/70 dark:bg-gray-800/70 backdrop-blur-xl border border-white/30 dark:border-gray-700/30 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-teal-500 to-cyan-600 rounded-t-3xl"></div>
+                <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-teal-500 to-cyan-600 rounded-2xl mb-6 shadow-lg">
+                  <span className="text-2xl">🛡️</span>
+                </div>
+                <h3 className="text-2xl font-black mb-4 text-gray-900 dark:text-white">Sécurité Maximale</h3>
+                <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
+                  Vos données sont protégées avec un cryptage de bout en bout. Vérification d'identité obligatoire.
+                </p>
+                <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
+                  <li className="flex items-center gap-2">
+                    <span className="text-teal-500">✓</span>
+                    <span>Cryptage SSL</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="text-teal-500">✓</span>
+                    <span>Vérification CNI</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="text-teal-500">✓</span>
+                    <span>Support 24/7</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Customer Testimonials Section */}
+      <section className="py-32 px-4 bg-gradient-to-br from-white via-slate-50 to-gray-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 relative overflow-hidden">
+        {/* Background decorations */}
+        <div className="absolute top-0 left-0 w-full h-full">
+          <div className="absolute top-10 right-10 w-32 h-32 bg-green-400/10 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-10 left-10 w-40 h-40 bg-blue-400/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+          <div className="absolute top-1/2 right-1/3 w-36 h-36 bg-yellow-400/10 rounded-full blur-3xl animate-pulse delay-500"></div>
+        </div>
+        
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="text-center mb-20">
+            <div className="inline-flex items-center gap-2 mb-6 px-6 py-3 bg-gradient-to-r from-blue-100 to-indigo-100 dark:from-blue-900/30 dark:to-indigo-900/30 rounded-full border border-blue-200 dark:border-blue-700/50">
+              <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+              <span className="text-sm font-semibold text-blue-700 dark:text-blue-400">Témoignages</span>
+            </div>
+            <h2 className="text-4xl md:text-6xl font-black text-gray-900 dark:text-white mb-6 leading-tight">
+              Ce Que Disent Nos Utilisateurs
+            </h2>
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
+              Découvrez les expériences réelles des travailleurs et employeurs qui font confiance à JobCamer
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-8">
+            {/* Testimonial 1 - Worker */}
+            <div className="group relative">
+              <div className="absolute inset-0 bg-gradient-to-br from-green-500/20 via-emerald-400/10 to-transparent rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
+              <div className="relative p-8 rounded-3xl bg-white/70 dark:bg-gray-800/70 backdrop-blur-xl border border-white/30 dark:border-gray-700/30 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-green-500 to-emerald-600 rounded-t-3xl"></div>
+                
+                {/* Stars */}
+                <div className="flex gap-1 mb-4">
+                  <span className="text-yellow-500">⭐</span>
+                  <span className="text-yellow-500">⭐</span>
+                  <span className="text-yellow-500">⭐</span>
+                  <span className="text-yellow-500">⭐</span>
+                  <span className="text-yellow-500">⭐</span>
+                </div>
+                
+                <p className="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed italic">
+                  "Grâce à JobCamer, j'ai trouvé plus de 15 missions en seulement 2 mois. La plateforme est simple à utiliser et les employeurs sont sérieux. Je recommande vivement !"
+                </p>
+                
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center text-white font-bold text-lg">
+                    JD
+                  </div>
+                  <div>
+                    <div className="font-bold text-gray-900 dark:text-white">Jean Dupont</div>
+                    <div className="text-sm text-gray-600 dark:text-gray-400">Maçon • Yaoundé</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Testimonial 2 - Employer */}
+            <div className="group relative">
+              <div className="absolute inset-0 bg-gradient-to-br from-red-500/20 via-rose-400/10 to-transparent rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
+              <div className="relative p-8 rounded-3xl bg-white/70 dark:bg-gray-800/70 backdrop-blur-xl border border-white/30 dark:border-gray-700/30 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-red-500 to-rose-600 rounded-t-3xl"></div>
+                
+                {/* Stars */}
+                <div className="flex gap-1 mb-4">
+                  <span className="text-yellow-500">⭐</span>
+                  <span className="text-yellow-500">⭐</span>
+                  <span className="text-yellow-500">⭐</span>
+                  <span className="text-yellow-500">⭐</span>
+                  <span className="text-yellow-500">⭐</span>
+                </div>
+                
+                <p className="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed italic">
+                  "J'ai rapidement trouvé des travailleurs qualifiés pour mon chantier. Le système de notation m'a permis de choisir les meilleurs profiles. Service excellent !"
+                </p>
+                
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 bg-gradient-to-br from-red-500 to-rose-600 rounded-full flex items-center justify-center text-white font-bold text-lg">
+                    RM
+                  </div>
+                  <div>
+                    <div className="font-bold text-gray-900 dark:text-white">Robert Mbarga</div>
+                    <div className="text-sm text-gray-600 dark:text-gray-400">Entreprise BTP • Douala</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Testimonial 3 - Worker */}
+            <div className="group relative">
+              <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/20 via-amber-400/10 to-transparent rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
+              <div className="relative p-8 rounded-3xl bg-white/70 dark:bg-gray-800/70 backdrop-blur-xl border border-white/30 dark:border-gray-700/30 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-500 to-amber-600 rounded-t-3xl"></div>
+                
+                {/* Stars */}
+                <div className="flex gap-1 mb-4">
+                  <span className="text-yellow-500">⭐</span>
+                  <span className="text-yellow-500">⭐</span>
+                  <span className="text-yellow-500">⭐</span>
+                  <span className="text-yellow-500">⭐</span>
+                  <span className="text-yellow-500">⭐</span>
+                </div>
+                
+                <p className="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed italic">
+                  "En tant que femme de ménage, je pensais que c'était difficile de trouver des clients réguliers. JobCamer a changé ma vie professionnelle. Merci !"
+                </p>
+                
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 bg-gradient-to-br from-yellow-500 to-amber-600 rounded-full flex items-center justify-center text-white font-bold text-lg">
+                    MN
+                  </div>
+                  <div>
+                    <div className="font-bold text-gray-900 dark:text-white">Marie Nkoulou</div>
+                    <div className="text-sm text-gray-600 dark:text-gray-400">Domestique • Yaoundé</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          {/* Trust indicators */}
+          <div className="mt-16 text-center">
+            <div className="inline-flex items-center gap-8 px-8 py-4 bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm rounded-full border border-gray-200/50 dark:border-gray-700/50">
+              <div className="flex items-center gap-2">
+                <span className="text-2xl">🏆</span>
+                <span className="font-semibold text-gray-700 dark:text-gray-300">1000+ Témoignages</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-2xl">⭐</span>
+                <span className="font-semibold text-gray-700 dark:text-gray-300">4.8/5 Note moyenne</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-2xl">🔒</span>
+                <span className="font-semibold text-gray-700 dark:text-gray-300">Avis vérifiés</span>
               </div>
             </div>
           </div>
