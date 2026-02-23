@@ -1,0 +1,175 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// Modèle Utilisateur pour l'authentification
+model User {
+  id              String   @id @default(cuid())
+  email           String?  @unique
+  phone           String?  @unique
+  password        String?  // Hashé avec bcrypt
+  firstName       String
+  lastName        String
+  role            UserRole @default(WORKER)
+  avatar          String?
+  bio             String?
+  category        String?
+  companyName     String?  // Pour les employeurs
+  companyWebsite  String?  // Pour les employeurs
+  location        Json?    // { city: string, district: string }
+  verified        Boolean  @default(false)
+  premium         Boolean  @default(false)
+  rating          Float?   @default(0)
+  totalJobs       Int?     @default(0)
+  totalJobsPosted Int?     @default(0)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  
+  // Relations
+  jobs            Job[]           // Pour les employeurs
+  applications    Application[]  // Pour les travailleurs
+  reviews         Review[]        @relation("ReviewGiven")        // Reviews donnés
+  receivedReviews Review[]        @relation("ReviewReceived")        // Reviews reçus
+  messages        Message[]       // Messages envoyés
+  notifications   Notification[]
+  
+  @@map("users")
+}
+
+// Énumération pour les rôles
+enum UserRole {
+  WORKER
+  EMPLOYER
+}
+
+// Modèle pour les offres d'emploi
+model Job {
+  id          String      @id @default(cuid())
+  title       String
+  description String
+  category    String
+  budget      Float
+  location    Json        // { city: string, district: string, coordinates?: { lat: number, lng: number } }
+  status      JobStatus   @default(OPEN)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  
+  // Relations
+  employerId  String
+  employer    User        @relation(fields: [employerId], references: [id])
+  applications Application[]
+  reviews     Review[]     @relation("JobReview")
+  
+  @@map("jobs")
+}
+
+enum JobStatus {
+  OPEN
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+}
+
+// Modèle pour les candidatures
+model Application {
+  id        String   @id @default(cuid())
+  message   String?
+  status    ApplicationStatus @default(PENDING)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  // Relations
+  jobId     String
+  job       Job      @relation(fields: [jobId], references: [id])
+  workerId  String
+  worker    User     @relation(fields: [workerId], references: [id])
+  
+  @@unique([jobId, workerId])
+  @@map("applications")
+}
+
+enum ApplicationStatus {
+  PENDING
+  ACCEPTED
+  REJECTED
+}
+
+// Modèle pour les évaluations
+model Review {
+  id        String   @id @default(cuid())
+  rating    Int      // 1-5
+  comment   String?
+  createdAt DateTime @default(now())
+  
+  // Relations
+  reviewerId String
+  reviewer   User    @relation("ReviewGiven", fields: [reviewerId], references: [id])
+  reviewedId String
+  reviewed   User    @relation("ReviewReceived", fields: [reviewedId], references: [id])
+  jobId      String?
+  job        Job?     @relation("JobReview", fields: [jobId], references: [id])
+  
+  @@unique([reviewerId, reviewedId, jobId])
+  @@map("reviews")
+}
+
+// Modèle pour les messages
+model Message {
+  id        String   @id @default(cuid())
+  content   String
+  createdAt DateTime @default(now())
+  
+  // Relations
+  senderId  String
+  sender    User     @relation(fields: [senderId], references: [id])
+  receiverId String
+  conversationId String
+  
+  @@map("messages")
+}
+
+// Modèle pour les conversations
+model Conversation {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  @@map("conversations")
+}
+
+// Modèle pour les notifications
+model Notification {
+  id        String           @id @default(cuid())
+  title     String
+  message   String
+  type      NotificationType
+  read      Boolean          @default(false)
+  createdAt DateTime         @default(now())
+  
+  // Relations
+  userId    String
+  user      User             @relation(fields: [userId], references: [id])
+  
+  @@map("notifications")
+}
+
+enum NotificationType {
+  NEW_APPLICATION
+  APPLICATION_ACCEPTED
+  APPLICATION_REJECTED
+  NEW_MESSAGE
+  JOB_COMPLETED
+  REVIEW_RECEIVED
+  SYSTEM
+}
